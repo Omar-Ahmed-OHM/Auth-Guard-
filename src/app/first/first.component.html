@@ -1,0 +1,38 @@
+<div class="login-container">
+  <form [formGroup]="loginform" (ngSubmit)="login()">
+    <div class="formGroup">
+      <label for="email">Email</label>
+      <input id="email" formControlName="email" type="email" />
+        @if (loginform.get('email')?.invalid && loginform.get('email')?.touched) {
+          @if (loginform.get('email')?.errors?.['required'])
+          {
+            <small >Email is required.</small>
+          }
+          @if (loginform.get('email')?.errors?.['email']) {
+
+            <small>Enter a valid email.</small>
+          }
+        }
+      </div>
+
+
+
+
+    <div class="formGroup">
+      <label for="password">Password</label>
+      <input id="password" formControlName="password" type="password" />
+      @if (loginform.get('password')?.invalid && loginform.get('password')?.touched) {
+        @if (loginform.get('password')?.errors?.['required'])
+        {
+          <small >Email is required.</small>
+        }
+        @if (loginform.get('password')?.errors?.['password']) {
+
+          <small>Enter a valid email.</small>
+        }
+      }
+    </div>
+
+    <button type="submit" [disabled]="loginform.invalid">Login</button>
+  </form>
+</div>
