@@ -16,13 +16,25 @@ export class FirstComponent {
       password:['',[Validators.required,Validators.minLength(6)]]
     })
   }
-  login(){
+  login() {
     if (this.loginform.valid) {
-      console.log('Form Submittedss', this.loginform.value);
-      localStorage.setItem('email',this.loginform.value.email)
+      console.log('Form Submitted', this.loginform.value);
+
+      let userType = 'type1';
+      if (this.loginform.value.email === 'admin@example.com') {
+        userType = 'admin';
+      } else if (this.loginform.value.email === 'user2@example.com') {
+        userType = 'type2';
+      }
+
+      localStorage.setItem('email', this.loginform.value.email);
+      localStorage.setItem('userType', userType);
+
+      console.log(`User logged in with role: ${userType}`);
     } else {
       console.log('Form is invalid');
     }
   }
+
 }
 
